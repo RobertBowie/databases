@@ -3,7 +3,7 @@ var app = {};
 $(function() {
   app = {
     //GLOBAL VARIABLES;
-    server:'https://api.parse.com/1/classes/chatterbox',
+    server:'http://127.0.0.1:3000',
     username: 'anonymous',
     room: 'lobby',
 
@@ -53,7 +53,7 @@ $(function() {
     send: function(message) {
       app.startSpinner();
       $.ajax({
-        url: app.server,
+        url: app.server + '/classes/messages',
         type: 'POST',
         data: JSON.stringify(message),
         contentType: 'application/json',
@@ -75,11 +75,11 @@ $(function() {
       
       $.ajax({
         // This is the url you should use to communicate with the parse API server.
-        url: app.server,
+        url: app.server + '/classes/messages',
         type: 'GET',
         contentType: 'application/json',
-        data: {order: '-createdAt'},
-        where: {createdAt: ">" + app.mostRecent},
+        // data: {order: '-createdAt'},
+        // where: {createdAt: ">" + app.mostRecent},
         complete: function () {
           app.stopSpinner();
         },
@@ -87,7 +87,7 @@ $(function() {
           //we can have function or loop run on data here
           console.log('chatterbox: Message: Data: ', data);//Can be removed later
           app.populateRooms(data.results);//can give this the argument of data.results
-          app.populateMessages(data.results)
+          app.populateMessages(data.results);
         },
         error: function (data) {
           // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
