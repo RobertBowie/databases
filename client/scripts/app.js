@@ -146,9 +146,9 @@ $(function() {
       if ( data.roomname === app.room ) {
         var $chat = $('<div class="chat" />');
         var validMessage = !!data.text;
-        var userFirstChar = data.username ? data.username.charAt(0) : null;
-        var validUser = data.username && userFirstChar !== ';' && userFirstChar !== '%' && userFirstChar !== '+';
-        if (validMessage && validUser) {
+        // var userFirstChar = data.username ? data.username.charAt(0) : null;
+        // var validUser = data.username && userFirstChar !== ';' && userFirstChar !== '%' && userFirstChar !== '+';
+        if (validMessage) { // && validUser
           var $username = $('<span class = "username" />');
           $username.text(data.username + ': ')
             .attr('data-username', data.username)

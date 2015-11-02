@@ -24,7 +24,6 @@ app.use("/classes", router);
 // Connect to the database
 db.connect();
 
-
 // Serve the client files
 app.use(express.static(__dirname + "/../client"));
 
